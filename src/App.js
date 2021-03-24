@@ -17,11 +17,22 @@ export default class App extends Component {
       {id:3,name:"写技术博客",done:true}
     ]
   }
+  //添加清单项 Header组件传值
+  addTodoItem = (todoObj) => {
+     //获取todoList数据
+     const {todoList} = this.state;
+     //进行添加操作
+     todoList.unshift(todoObj);
+     //更新数据
+     this.setState({
+       todoList
+     })
+  }
    render() {
      const {todoList} = this.state;
       return  <div className="todo-container">
                 <div className="todo-wrap">
-                  <Header/>
+                  <Header addTodoItem={this.addTodoItem}/>
                   <List todoList={todoList}/>
                   <Footer/>
                 </div>
