@@ -6,9 +6,14 @@ import Item from '../Item'
 
 export default class List extends Component {
     render() {
+        const {todoList} = this.props;
         return (
             <ul className="todo-main">
-               <Item/>
+               {
+                   todoList.map((todoObj) => {
+                       return <Item key={todoObj.id} {...todoObj}/>
+                   })
+               }
             </ul>
         )
     }
