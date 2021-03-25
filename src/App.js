@@ -68,13 +68,22 @@ export default class App extends Component {
       todoList:newTodoList
     })
   }
+  //清空已完成的清单项
+  handleClearChecked = () => {
+    //获取数据
+    const {todoList} = this.state;
+    const newTodoList = todoList.filter((todoObj) => {return todoObj.done !== true});
+    this.setState({
+      todoList:newTodoList
+    })
+  }
    render() {
      const {todoList} = this.state;
       return  <div className="todo-container">
                 <div className="todo-wrap">
                   <Header addTodoItem={this.addTodoItem}/>
                   <List todoList = {todoList} changeChoose = {this.changeChoose} deleteTodoItem={this.deleteTodoItem} />
-                  <Footer todoList = {todoList} changeCheckAll ={this.changeCheckAll} />
+                  <Footer todoList = {todoList} changeCheckAll ={this.changeCheckAll} handleClearChecked = {this.handleClearChecked} />
                 </div>
               </div>
    }
