@@ -1,7 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+//导入prop-Types
+import propTypes from 'prop-types';
 //引入样式文件
 import './index.css';
 export default class Item extends Component {
+    //对接收到的prop进行验证
+    static propTypes = {
+        changeChoose:propTypes.func.isRequired
+    }
     //数据状态
     state = {
         mouse:false
