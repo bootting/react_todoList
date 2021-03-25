@@ -45,12 +45,24 @@ export default class App extends Component {
       todoList:newTodoList
     })
   }
+  //删除清单项操作
+  deleteTodoItem = (id) => {
+    //获取数据
+    const {todoList} = this.state;
+    let index = todoList.findIndex(todoObj => todoObj.id === id);
+    //删除对应的数据
+    todoList.splice(index,1);
+    //更新清单列表
+    this.setState({
+      todoList
+    })
+  }
    render() {
      const {todoList} = this.state;
       return  <div className="todo-container">
                 <div className="todo-wrap">
                   <Header addTodoItem={this.addTodoItem}/>
-                  <List todoList={todoList} changeChoose = {this.changeChoose}/>
+                  <List todoList={todoList} changeChoose = {this.changeChoose} deleteTodoItem={this.deleteTodoItem} />
                   <Footer/>
                 </div>
               </div>

@@ -6,7 +6,8 @@ import './index.css';
 export default class Item extends Component {
     //对接收到的prop进行验证
     static propTypes = {
-        changeChoose:propTypes.func.isRequired
+        changeChoose:propTypes.func.isRequired,
+        deleteTodoItem:propTypes.func.isRequired
     }
     //数据状态
     state = {
@@ -21,7 +22,7 @@ export default class Item extends Component {
                   <input type="checkbox" checked={done} onChange={this.handleChangeChoose(id)}/>
                   <span>{name}</span>
                 </label>
-                <button className="btn btn-danger" style={{display: mouse ? 'block' : 'none'}}>删除</button>
+                <button onClick={() => {this.deleteItem(id)}} className="btn btn-danger" style={{display: mouse ? 'block' : 'none'}}>删除</button>
              </li>
         )
     }
@@ -40,6 +41,13 @@ export default class Item extends Component {
         return (event) =>{
             this.props.changeChoose(id,event.target.checked)
         }
+    }
+    //删除选中的id对应的清单项
+    deleteItem = (id) => {
+       //模态框提示用户：防止误删
+       if(window.confirm("您确定要删除此条清单吗？")) {
+            this.props.deleteTodoItem(id);
+       }
     }
     
 }

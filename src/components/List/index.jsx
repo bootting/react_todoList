@@ -10,15 +10,16 @@ export default class List extends Component {
     //对接收到的props进行验证
     static propTypes = {
         todoList:propTypes.array.isRequired,
-        changeChoose:propTypes.func.isRequired
+        changeChoose:propTypes.func.isRequired,
+        deleteTodoItem:propTypes.func.isRequired
     }
     render() {
-        const {todoList,changeChoose} = this.props;
+        const {todoList,changeChoose,deleteTodoItem} = this.props;
         return (
             <ul className="todo-main">
                {
                    todoList.map((todoObj) => {
-                       return <Item key={todoObj.id} {...todoObj} changeChoose={changeChoose}/>
+                       return <Item key={todoObj.id} {...todoObj} changeChoose={changeChoose} deleteTodoItem={deleteTodoItem}/>
                    })
                }
             </ul>
