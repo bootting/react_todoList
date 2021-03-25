@@ -7,12 +7,12 @@ export default class Item extends Component {
         mouse:false
     }
     render() {
-        const {name} = this.props;
+        const {id,name,done} = this.props;
         const {mouse} = this.state;
         return (
             <li style={{backgroundColor: mouse ? '#D0F2E7' : "#fff" }} onMouseLeave={this.handleMouse(false)} onMouseEnter={this.handleMouse(true)}>
                 <label>
-                  <input type="checkbox"/>
+                  <input type="checkbox" checked={done} onChange={this.handleChangeChoose(id)}/>
                   <span>{name}</span>
                 </label>
                 <button className="btn btn-danger" style={{display: mouse ? 'block' : 'none'}}>删除</button>
@@ -26,6 +26,13 @@ export default class Item extends Component {
                 mouse:flag
             })
             
+        }
+    }
+    //勾选和取消勾选功能
+    handleChangeChoose = (id) => {
+        //需要找到是哪个列表项更改了done值
+        return (event) =>{
+            this.props.changeChoose(id,event.target.checked)
         }
     }
     

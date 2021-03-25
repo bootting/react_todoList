@@ -28,12 +28,29 @@ export default class App extends Component {
        todoList
      })
   }
+  //勾选和取消勾选更改done值
+  changeChoose = (id,done) => {
+    //获取todoList数据
+    const {todoList} = this.state;
+    //找到id这个列表项
+    const newTodoList = todoList.map((todoObj) =>{
+      if(todoObj.id === id) {
+        return {...todoObj,done:done}
+      } else {
+        return todoObj
+      }
+    })
+    //更新值
+    this.setState({
+      todoList:newTodoList
+    })
+  }
    render() {
      const {todoList} = this.state;
       return  <div className="todo-container">
                 <div className="todo-wrap">
                   <Header addTodoItem={this.addTodoItem}/>
-                  <List todoList={todoList}/>
+                  <List todoList={todoList} changeChoose = {this.changeChoose}/>
                   <Footer/>
                 </div>
               </div>

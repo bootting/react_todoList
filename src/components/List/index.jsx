@@ -6,12 +6,12 @@ import Item from '../Item'
 
 export default class List extends Component {
     render() {
-        const {todoList} = this.props;
+        const {todoList,changeChoose} = this.props;
         return (
             <ul className="todo-main">
                {
                    todoList.map((todoObj) => {
-                       return <Item key={todoObj.id} {...todoObj}/>
+                       return <Item key={todoObj.id} {...todoObj} changeChoose={changeChoose}/>
                    })
                }
             </ul>
